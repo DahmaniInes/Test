@@ -4,22 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de Jeu Concours</title>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXX');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-XXXXXXXXX-X');
+    </script>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
     <!-- Formulaire du jeu concours -->
-    <form id="jeu-concours-form" action="confirmation.html" method="post">
+    <form id="jeu-concours-form" onsubmit="submitForm(event)">
         <label for="nom">Nom:</label>
         <input type="text" id="nom" name="nom" required>
         <label for="prenom">Prénom:</label>
@@ -28,5 +24,20 @@
         <textarea id="message" name="message" required></textarea>
         <button type="submit">Envoyer</button>
     </form>
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            gtag('event', 'formSubmission', {
+                'event_category': 'Form',
+                'event_action': 'submit',
+                'event_label': 'Jeu Concours'
+            });
+
+            setTimeout(function() {
+                window.location.href = 'confirmation.html';
+            }, 1000); // Rediriger après 1 seconde pour s'assurer que l'événement est envoyé
+        }
+    </script>
 </body>
 </html>
+
