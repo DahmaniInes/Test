@@ -15,30 +15,53 @@
 </head>
 <body>
     <!-- Formulaire du jeu concours -->
-    <form id="jeu-concours-form" onsubmit="submitForm(event)">
+    <form id="jeu-concours-form" class="form-class" onsubmit="submitForm(event)">
         <label for="nom">Nom:</label>
         <input type="text" id="nom" name="nom" required>
         <label for="prenom">Prénom:</label>
         <input type="text" id="prenom" name="prenom" required>
         <label for="message">Message:</label>
         <textarea id="message" name="message" required></textarea>
-        <button type="submit" name="envoyer" id="id_button">Envoyer</button>
+        <button type="submit" name="envoyer" id="id_button" class="btn-class">Envoyer</button>
     </form>
     <script>
         function submitForm(event) {
             event.preventDefault();
+            
+            // Collecter les informations du formulaire
+            var form = document.getElementById('jeu-concours-form');
+            var formId = form.id;
+            var formClass = form.className;
+            var nom = document.getElementById('nom').value;
+            var prenom = document.getElementById('prenom').value;
+            var message = document.getElementById('message').value;
+            var bouton = document.getElementById('id_button');
+            var boutonId = bouton.id;
+            var boutonName = bouton.name;
+            var boutonText = bouton.innerText || bouton.textContent;
+            var boutonClass = bouton.className;
+
+            // Envoyer l'événement à Google Analytics
             gtag('event', 'formSubmission', {
                 'event_category': 'Form',
                 'event_action': 'submit',
-                'event_label': 'formTestGit'
+                'event_label': 'formTestGit',
+                'form_id': formId,
+                'form_class': formClass,
+                'form_nom': nom,
+                'form_prenom': prenom,
+                'form_message': message,
+                'button_id': boutonId,
+                'button_name': boutonName,
+                'button_text': boutonText,
+                'button_class': boutonClass
             });
 
+            // Rediriger après 1 seconde pour s'assurer que l'événement est envoyé
             setTimeout(function() {
                 window.location.href = 'confirmation.html';
-            }, 1000); // Rediriger après 1 seconde pour s'assurer que l'événement est envoyé
+            }, 1000);
         }
     </script>
 </body>
 </html>
-
-
