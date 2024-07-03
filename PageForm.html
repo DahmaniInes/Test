@@ -18,7 +18,7 @@
     <form id="jeu-concours-form" class="form-class" onsubmit="submitForm(event)">
         <label for="nom">Nom:</label>
         <input type="text" id="nom" name="nom" required>
-        <label for="prenom">Prénomm:</label>
+        <label for="prenom">Prénom:</label>
         <input type="text" id="prenom" name="prenom" required>
         <label for="message">Message:</label>
         <textarea id="message" name="message" required></textarea>
@@ -41,11 +41,20 @@
             var boutonText = bouton.innerText || bouton.textContent;
             var boutonClass = bouton.className;
 
-            // Envoyer l'événement à Google Analytics
-            gtag('event', 'formSubmission', {
-                'event_category': 'Form',
-                'event_action': 'submit',
-                'event_label': 'formTestGit',
+            // Log des valeurs pour le débogage
+            console.log('formId:', formId);
+            console.log('formClass:', formClass);
+            console.log('nom:', nom);
+            console.log('prenom:', prenom);
+            console.log('message:', message);
+            console.log('boutonId:', boutonId);
+            console.log('boutonName:', boutonName);
+            console.log('boutonText:', boutonText);
+            console.log('boutonClass:', boutonClass);
+
+            // Pousser les informations dans la couche de données
+            dataLayer.push({
+                'event': 'formSubmission',
                 'form_id': formId,
                 'form_class': formClass,
                 'form_nom': nom,
@@ -65,3 +74,4 @@
     </script>
 </body>
 </html>
+
