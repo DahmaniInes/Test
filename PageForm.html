@@ -22,7 +22,7 @@
         <input type="text" id="prenom" name="prenom" required>
         <label for="message">Message:</label>
         <textarea id="message" name="message" required></textarea>
-        <button type="submit" name="envoyer">Envoyer</button>
+        <button type="submit" name="envoyer" id="id_button">Envoyer</button>
     </form>
     <script>
         function submitForm(event) {
@@ -30,7 +30,7 @@
             gtag('event', 'formSubmission', {
                 'event_category': 'Form',
                 'event_action': 'submit',
-                'event_label': 'Jeu Concours'
+                'event_label': 'formTestGit'
             });
 
             setTimeout(function() {
